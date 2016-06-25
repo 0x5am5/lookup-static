@@ -168,7 +168,7 @@
 
 
 				if (photos.count) {
-					result = '<img src="' + photos.groups[0].prefix + photoSize + photos.groups[0].suffix + '"/>';
+					result = '<img src="' + photos.groups[0].prefix + photoSize + photos.groups[0].suffix + '" class="media-left"/>';
 				}
 
 				return result;
@@ -202,7 +202,7 @@
 				var items = '';
 
 				responses.forEach(function (item) {
-					items += '<li>' + _this.addPhoto(item.venue.photos) + item.venue.name + '</li>';
+					items += '<li class="media listing"><a href="' + item.tips[0].canonicalUrl + '" target="_blank">' + _this.addPhoto(item.venue.photos) + '<div class="media-body">' + '<h3 class="media-heading">' + item.venue.name + '</h3>' + '<span class="listing__rating">' + item.venue.rating + '</span>' + item.tips[0].text + '</div>' + '</a></li>';
 				});
 
 				this.list.innerHTML = items;

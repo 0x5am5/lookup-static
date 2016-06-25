@@ -1,7 +1,9 @@
 // Settings
 @import 'settings/variables';
+@import 'settings/bootstrap-overrides';
 
 @import '../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+@import 'base/fontawesome/font-awesome';
 
 // Tools
 
@@ -12,6 +14,7 @@
 @import 'base/fonts';
 
 // Components 
+@import 'components/dropdown';
 
 // Trumps
 @import 'trumps/spacings';

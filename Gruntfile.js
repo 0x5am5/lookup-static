@@ -148,7 +148,14 @@ module.exports = function(grunt) {
 
 
 	// Default task(s).
-	grunt.registerTask('default', ['sass:dev', 'assemble', 'webpack', 'connect', 'watch']);
+	grunt.registerTask('default', function() {
+
+		// Copy fonts
+		grunt.file.copy('./app/assets/fonts', './dist/assets/fonts');
+
+		grunt.task.run(['sass:dev', 'assemble', 'webpack', 'connect', 'watch']);
+
+	});
 	// Build task
 	grunt.registerTask('build', ['sass:dist', 'postcss', 'assemble', 'webpack']);
 
