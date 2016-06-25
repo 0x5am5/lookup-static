@@ -161,6 +161,13 @@
 	var _class = function () {
 		_createClass(_class, [{
 			key: 'ajaxResponse',
+
+			/**
+	      * Handles the response from the getJSON method, loops through responses and adds to list on the page
+	      *
+	      * @method ajaxResponse
+	      * @param {Object} Data JSON data recieved from the get JSON.
+	      */
 			value: function ajaxResponse(data) {
 				var search = data.response.geocode.displayString;
 				var responses = data.response.groups[0].items;
@@ -171,23 +178,38 @@
 				});
 
 				this.list.innerHTML = items;
+				this.statusBox.innerText = "Top recommended places in your area.";
+
+				if (data.response.geocode.displayString.length) {
+					this.statusBox.innerText += " We think you're in" + data.response.geocode.displayString;
+				}
 			}
+
+			/**
+	      * This method calls the Foursquare API (or any set) based on the current query and params defined above
+	      *
+	      * @method callAPI
+	      */
+
 		}, {
 			key: 'callAPI',
-			value: function callAPI(e) {
-
+			value: function callAPI() {
 				$.getJSON(URL + ENDPOINT, {
 					client_id: CLIENT_ID,
 					client_secret: CLIENT_SECRET,
 					near: this.currentQuery,
 					section: params.section,
-					v: 20130815
+					v: 20130815,
+					limit: params.limit
 				}, this.ajaxResponse.bind(this));
-
-				if (e) {
-					e.preventDefault;
-				}
 			}
+
+			/**
+	      * Bind the events to handle user input
+	      *
+	      * @method addEvents
+	      */
+
 		}, {
 			key: 'addEvents',
 			value: function addEvents() {
@@ -196,47 +218,79 @@
 				document.querySelector('#searchForm').addEventListener('submit', function (e) {
 					if (_this.searchBox.value) {
 						_this.currentQuery = _this.searchBox.value;
-						_this.callAPI.call(_this, e);
+						_this.callAPI.call(_this);
 					}
+
+					e.preventDefault;
 				});
 			}
+
+			/**
+	      * If there was an error retrieving the users geolocation, show and error
+	      *
+	      * @method showError
+	      * @param {Object} Error information
+	      */
+
 		}, {
 			key: 'showError',
 			value: function showError(error) {
 				switch (error.code) {
 					case error.PERMISSION_DENIED:
-						this.statusBox.innerHTML = "User denied the request for Geolocation.";
+						this.statusBox.innerHTML = "You have denied us access to your location. Please make a search manually.";
 						break;
 					case error.POSITION_UNAVAILABLE:
-						this.statusBox.innerHTML = "Location information is unavailable.";
+						this.statusBox.innerHTML = "We cannot determine your location.";
 						break;
 					case error.TIMEOUT:
-						this.statusBox.innerHTML = "The request to get user location timed out.";
+						this.statusBox.innerHTML = "The request to get your location timed out. Please try again.";
 						break;
 					case error.UNKNOWN_ERROR:
-						this.statusBox.innerHTML = "An unknown error occurred.";
+						this.statusBox.innerHTML = "An unknown error occurred. Sorry.";
 						break;
 				}
 			}
+
+			/**
+	      * If the users browser supports geolocation, it asks for permission
+	      *
+	      * @method getLocation
+	      */
+
 		}, {
 			key: 'getLocation',
 			value: function getLocation() {
 				if (navigator.geolocation) {
+					this.statusBox.innerText = "Getting your location...";
 					navigator.geolocation.getCurrentPosition(this.showPosition.bind(this), this.showError.bind(this));
 				} else {
 					this.statusBox.innerText = "Geolocation is not supported by this browser.";
 				}
 			}
+
+			/**
+	      * Sets the users geolocation as the current set query of the app
+	      *
+	      * @method hashowPositionndler
+	      * @param {Object} Raw Geolocation data
+	      */
+
 		}, {
 			key: 'showPosition',
 			value: function showPosition(position) {
 
-				this.currentQuery = String(position.coords.latitude) + position.coords.longitude;
-
-				this.statusBox.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
-
+				this.currentQuery = String(position.coords.latitude) + ',' + position.coords.longitude;
 				this.callAPI.call(this);
 			}
+
+			/**
+	   * This class calls handles users Geolocation or search input and retrieves top recommended places
+	   * in their area.
+	   *
+	   * @class FourSquare
+	   * @constructor
+	   */
+
 		}]);
 
 		function _class() {
