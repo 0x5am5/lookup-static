@@ -10199,8 +10199,33 @@ button.close {
   clip: auto;
 }
 
+body {
+  padding-top: 70px;
+}
+
+.btn {
+  font-size: 20px;
+}
+
 .dropdown-menu {
   padding: 5px;
+}
+
+.logo {
+  position: relative;
+  text-align: center;
+  height: 50px;
+}
+.logo__text {
+  font-size: 2em;
+  color: #000000;
+  position: absolute;
+  top: 0;
+  margin: 0;
+}
+
+.search-form {
+  margin-bottom: 20px;
 }
 
 .margin--sm {

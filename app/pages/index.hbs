@@ -4,9 +4,10 @@ title: "Lookup is the app that means you'll never look up"
 
 <main>
 	<div class="container">
-		<h1>Lookup!</h1>
+		
+		{{> logo }}
 
-		<form action=# id=searchForm>
+		<form action=# id=searchForm class=search-form>
 
 			<div class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
@@ -28,17 +29,14 @@ title: "Lookup is the app that means you'll never look up"
 					<button type=submit class="btn-primary btn btn-lrg fa fa-search">
 						<span class="sr-only">Search</span>
 					</button>
+					<button type=button id=location class="btn btn-primary fa fa-dot-circle-o">
+						<span class="sr-only">Use Location</span>
+					</button>
 				</div>
 			</div>
 		</form>
 
 		<div class=status-box></div>
-		
-		<button type=button id=location class="btn btn-primary fa fa-dot-circle-o">
-			<span class="sr-only">Use Location</span>
-		</button>
-
-
 
 		<ul class="results list-unstyled"></ul>
 	</div>

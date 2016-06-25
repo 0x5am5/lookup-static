@@ -1,0 +1,13 @@
+.logo {
+	position: relative;
+	text-align: center;
+	height: 50px;
+
+	&__text {
+		font-size: 2em;
+		color: $colorBlack;
+		position: absolute;
+		top: 0;
+		margin: 0;
+	}
+}

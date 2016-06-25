@@ -4,4 +4,5 @@
 - caching
 - ember
 - dialog
+- Loading feedback
 
