@@ -4,13 +4,30 @@
 
 	a {
 		color: $colorBlack;
+		display: block;
+		background-color: transparent;
+		transition: background-color ease .5s, padding ease .5s;
+		padding: 15px 0;
 
 		&:hover {
 			text-decoration: none; 
+			background-color: lighten($colorLogoRed, 30%);
+			padding-left: 15px;
 		}
 	}
 
 	&.show {
 		opacity: 1;
+	}
+
+	&__rating {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+	}
+
+	&__listing {
+		position: relative;
+		border-bottom: 1px solid lighten($colorBlack, 20%);
 	}
 }

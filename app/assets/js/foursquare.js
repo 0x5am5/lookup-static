@@ -44,11 +44,11 @@ export default class {
 		let items = '';
 
 		responses.forEach((item) => {
-			items += '<li class="media listing"><a href="' + item.tips[0].canonicalUrl + '" target="_blank">' + 
+			items += '<li class="results__listing"><a href="' + item.tips[0].canonicalUrl + '" target="_blank" class="media">' + 
 						this.addPhoto(item.venue.photos) +
 						'<div class="media-body">' +
 							'<h3 class="media-heading">' + item.venue.name + '</h3>' + 
-							'<span class="listing__rating">' + item.venue.rating + '</span>' +
+							'<span class="results__rating">' + item.venue.rating + '</span>' +
 							item.tips[0].text + 
 						'</div>' +
 					'</a></li>';
