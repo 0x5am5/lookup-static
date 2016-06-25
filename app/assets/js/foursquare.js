@@ -8,8 +8,7 @@ const CLIENT_SECRET = '2TLI5SLFQ23PN0FWZMFMCE2OOVNALBD2QDI2IYUX3T2MP0TY';
 
 let exploreParams = {
 	v: 20130815,
-	section: 'topPicks',
-	limit: 10
+	section: 'topPicks'
 };
 
 let photoSize = 'width100';
@@ -51,13 +50,10 @@ export default class {
 		});
 
 		this.list.innerHTML = items;
-		this.statusBox.innerText = "Top recommended places in your area.";
 
-		console.log(data.response);
-		if (data.response.geocode.displayString.length) {
-			this.statusBox.innerText += " We think you're in " + data.response.geocode.displayString;
+		if (this.searchType === 'geo') {
+			this.searchBox.setAttribute("placeholder", "Currently using your location...");
 		}
-
 	}
 
 	/**
@@ -70,29 +66,13 @@ export default class {
 		Object.assign(data, {
 			near: this.currentQuery,
 			client_id: CLIENT_ID,
-			client_secret: CLIENT_SECRET});
+			client_secret: CLIENT_SECRET,
+			limit: this.limit.value});
 
 		$.getJSON(URL + endpoint, 
 			data, 
 			this.ajaxResponseSuccess.bind(this))
 				.fail(this.ajaxResponseFail.bind(this));
-	}
-
-	/**
-     * Bind the events to handle user input
-     *
-     * @method addEvents
-     */
-	addEvents() {
-		document.querySelector('#searchForm').addEventListener('submit', (e) => {
-			if (this.searchBox.value) {	
-				this.currentQuery = this.searchBox.value;
-				this.callAPI.call(this, ENDPOINT_EXPLORE, exploreParams);
-			}
-			e.preventDefault;
-		});
-
-		document.querySelector('#location').addEventListener('click', this.getLocation.bind(this));
 	}
 
 	/**
@@ -125,7 +105,9 @@ export default class {
      */
 	getLocation() {
 	    if (navigator.geolocation) {
-	        this.statusBox.innerText = "Getting your location...";
+	    	this.searchBox.value = "";
+	        this.searchBox.setAttribute("placeholder", "Getting your location...");
+			this.searchType = 'geo';
 	        navigator.geolocation.getCurrentPosition(this.showPosition.bind(this), this.showError.bind(this));
 	    } else {
 	        this.statusBox.innerText = "Geolocation is not supported by this browser.";
@@ -144,6 +126,28 @@ export default class {
 	}
 
 	/**
+     * Bind the events to handle user input
+     *
+     * @method addEvents
+     */
+	addEvents() {
+		document.querySelector('#searchForm').addEventListener('submit', (e) => {
+			if (this.searchBox.value) {	
+				this.searchType = 'search';
+				this.currentQuery = this.searchBox.value;
+				this.callAPI.call(this, ENDPOINT_EXPLORE, exploreParams);
+			}
+			e.preventDefault;
+		});
+
+		document.querySelector('#location').addEventListener('click', this.getLocation.bind(this));
+
+		this.limit.addEventListener('input', () => {
+			this.callAPI.call(this, ENDPOINT_EXPLORE, exploreParams);
+		});
+	}
+
+	/**
 	 * This class calls handles users Geolocation or search input and retrieves top recommended places
 	 * in their area.
 	 *
@@ -155,6 +159,7 @@ export default class {
 		this.list = document.querySelector('.results');
 		this.searchBox = document.querySelector('#searchBox');
 		this.statusBox = document.querySelector('.status-box');
+		this.limit = document.querySelector('#results');
 
 		this.addEvents();
 		this.getLocation();
