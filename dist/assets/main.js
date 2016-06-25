@@ -145,30 +145,39 @@
 	var $ = _jquery2.default;
 
 	var URL = 'https://api.foursquare.com';
-	var ENDPOINT = '/v2/venues/explore';
+	var ENDPOINT_EXPLORE = '/v2/venues/explore';
 	var CLIENT_ID = '4GSCITNB5YDXYHICVOTRMAWXOS5XRY04XVLOXKG4ZALYPCMC';
 	var CLIENT_SECRET = '2TLI5SLFQ23PN0FWZMFMCE2OOVNALBD2QDI2IYUX3T2MP0TY';
 
-	var params = {
-		near: 'Southwark',
-		query: 'sushi',
-		limit: 5,
-		radius: 5,
-		ll: '40.7,-74',
-		section: 'topPicks'
+	var exploreParams = {
+		v: 20130815,
+		section: 'topPicks',
+		limit: 10
 	};
 
 	var _class = function () {
 		_createClass(_class, [{
-			key: 'ajaxResponse',
+			key: 'ajaxResponseFail',
+
+			/**
+	      * Handles the error response from the getJSON method. Displays message.
+	      *
+	      * @method ajaxResponseFail
+	      */
+			value: function ajaxResponseFail() {
+				this.statusBox.innerText = "There was an error retrieving recommended places.";
+			}
 
 			/**
 	      * Handles the response from the getJSON method, loops through responses and adds to list on the page
 	      *
-	      * @method ajaxResponse
+	      * @method ajaxResponseSuccess
 	      * @param {Object} Data JSON data recieved from the get JSON.
 	      */
-			value: function ajaxResponse(data) {
+
+		}, {
+			key: 'ajaxResponseSuccess',
+			value: function ajaxResponseSuccess(data) {
 				var search = data.response.geocode.displayString;
 				var responses = data.response.groups[0].items;
 				var items = '';
@@ -180,8 +189,9 @@
 				this.list.innerHTML = items;
 				this.statusBox.innerText = "Top recommended places in your area.";
 
+				console.log(data.response);
 				if (data.response.geocode.displayString.length) {
-					this.statusBox.innerText += " We think you're in" + data.response.geocode.displayString;
+					this.statusBox.innerText += " We think you're in " + data.response.geocode.displayString;
 				}
 			}
 
@@ -193,15 +203,14 @@
 
 		}, {
 			key: 'callAPI',
-			value: function callAPI() {
-				$.getJSON(URL + ENDPOINT, {
-					client_id: CLIENT_ID,
-					client_secret: CLIENT_SECRET,
+			value: function callAPI(endpoint, data, callback) {
+
+				Object.assign(data, {
 					near: this.currentQuery,
-					section: params.section,
-					v: 20130815,
-					limit: params.limit
-				}, this.ajaxResponse.bind(this));
+					client_id: CLIENT_ID,
+					client_secret: CLIENT_SECRET });
+
+				$.getJSON(URL + endpoint, data, callback.bind(this)).fail(this.ajaxResponseFail.bind(this));
 			}
 
 			/**
@@ -218,11 +227,12 @@
 				document.querySelector('#searchForm').addEventListener('submit', function (e) {
 					if (_this.searchBox.value) {
 						_this.currentQuery = _this.searchBox.value;
-						_this.callAPI.call(_this);
+						_this.callAPI.call(_this, ENDPOINT_EXPLORE, exploreParams, _this.ajaxResponseSuccess);
 					}
-
 					e.preventDefault;
 				});
+
+				document.querySelector('#location').addEventListener('click', this.getLocation.bind(this));
 			}
 
 			/**
@@ -278,9 +288,8 @@
 		}, {
 			key: 'showPosition',
 			value: function showPosition(position) {
-
 				this.currentQuery = String(position.coords.latitude) + ',' + position.coords.longitude;
-				this.callAPI.call(this);
+				this.callAPI.call(this, ENDPOINT_EXPLORE, exploreParams, this.ajaxResponseSuccess);
 			}
 
 			/**

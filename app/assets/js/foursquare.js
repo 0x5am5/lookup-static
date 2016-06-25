@@ -2,27 +2,33 @@ import jQuery from 'jquery';
 let $ = jQuery;
 
 const URL = 'https://api.foursquare.com';
-const ENDPOINT = '/v2/venues/explore';
+const ENDPOINT_EXPLORE = '/v2/venues/explore';
 const CLIENT_ID = '4GSCITNB5YDXYHICVOTRMAWXOS5XRY04XVLOXKG4ZALYPCMC';
 const CLIENT_SECRET = '2TLI5SLFQ23PN0FWZMFMCE2OOVNALBD2QDI2IYUX3T2MP0TY';
 
-let params = {
-	near: 'Southwark',
-	query: 'sushi',
-	limit: 5,
-	radius: 5,
-	ll:'40.7,-74',
-	section: 'topPicks'
+let exploreParams = {
+	v: 20130815,
+	section: 'topPicks',
+	limit: 10
 };
 
 export default class {
 	/**
+     * Handles the error response from the getJSON method. Displays message.
+     *
+     * @method ajaxResponseFail
+     */
+	ajaxResponseFail() {
+		this.statusBox.innerText = "There was an error retrieving recommended places."
+	}
+
+	/**
      * Handles the response from the getJSON method, loops through responses and adds to list on the page
      *
-     * @method ajaxResponse
+     * @method ajaxResponseSuccess
      * @param {Object} Data JSON data recieved from the get JSON.
      */
-	ajaxResponse(data) {
+	ajaxResponseSuccess(data) {
 		let search = data.response.geocode.displayString;
 		let responses = data.response.groups[0].items;
 		let items = '';
@@ -34,8 +40,9 @@ export default class {
 		this.list.innerHTML = items;
 		this.statusBox.innerText = "Top recommended places in your area.";
 
+		console.log(data.response);
 		if (data.response.geocode.displayString.length) {
-			this.statusBox.innerText += " We think you're in" + data.response.geocode.displayString;
+			this.statusBox.innerText += " We think you're in " + data.response.geocode.displayString;
 		}
 
 	}
@@ -45,15 +52,17 @@ export default class {
      *
      * @method callAPI
      */
-	callAPI() {
-		$.getJSON(URL + ENDPOINT, {
-				client_id: CLIENT_ID,
-				client_secret: CLIENT_SECRET,
-				near: this.currentQuery,
-				section: params.section,
-				v:20130815,
-				limit: params.limit
-		}, this.ajaxResponse.bind(this));
+	callAPI(endpoint, data, callback) {
+
+		Object.assign(data, {
+			near: this.currentQuery,
+			client_id: CLIENT_ID,
+			client_secret: CLIENT_SECRET});
+
+		$.getJSON(URL + endpoint, 
+			data, 
+			callback.bind(this))
+				.fail(this.ajaxResponseFail.bind(this));
 	}
 
 	/**
@@ -65,11 +74,12 @@ export default class {
 		document.querySelector('#searchForm').addEventListener('submit', (e) => {
 			if (this.searchBox.value) {	
 				this.currentQuery = this.searchBox.value;
-				this.callAPI.call(this);
+				this.callAPI.call(this, ENDPOINT_EXPLORE, exploreParams, this.ajaxResponseSuccess);
 			}
-			
 			e.preventDefault;
 		});
+
+		document.querySelector('#location').addEventListener('click', this.getLocation.bind(this));
 	}
 
 	/**
@@ -116,9 +126,8 @@ export default class {
      * @param {Object} Raw Geolocation data
      */
 	showPosition(position) {
-
 		this.currentQuery = String(position.coords.latitude) + ',' + position.coords.longitude;
-    	this.callAPI.call(this);
+    	this.callAPI.call(this, ENDPOINT_EXPLORE, exploreParams, this.ajaxResponseSuccess);
 	}
 
 	/**
