@@ -10286,6 +10286,11 @@ body {
   top: 5px;
   right: 5px;
 }
+@media screen and (max-width: 767px) {
+  .results__rating {
+    top: 20px;
+  }
+}
 .results__listing {
   position: relative;
   border-bottom: 1px solid #333333;
@@ -10293,6 +10298,24 @@ body {
 
 .search-form {
   margin-bottom: 20px;
+}
+
+.splat {
+  background: #FFFFFF;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 1001;
+  text-align: center;
+  font-size: 10em;
+  font-family: "lobster_1.3regular";
+  padding-top: 25vh;
+}
+.splat.active {
+  display: block;
 }
 
 .margin--sm {

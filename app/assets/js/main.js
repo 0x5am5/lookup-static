@@ -13,4 +13,19 @@ var text = document.querySelectorAll('.js-logo-text');
 	setTimeout(() => {
 		text.classList.add('active');
 	}, 500);
-})
+});
+
+var splat = document.querySelector('.splat');
+
+function toggleSplat(e) {
+	if (e.altKey && e.keyCode === 83) {
+		splat.classList.add('active');
+
+		setTimeout(() => {
+			splat.classList.remove('active');
+		}, 100);
+
+	}
+}
+
+document.addEventListener('keydown', toggleSplat);

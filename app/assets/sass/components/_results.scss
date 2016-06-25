@@ -24,6 +24,10 @@
 		position: absolute;
 		top: 5px;
 		right: 5px;
+
+		@media screen and (max-width: $screen-sm - 1) {
+			top: 20px;
+		}
 	}
 
 	&__listing {

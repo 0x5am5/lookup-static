@@ -139,7 +139,7 @@ export default class {
      */
 	addEvents() {
 		document.querySelector('#searchForm').addEventListener('submit', (e) => {
-			if (this.searchBox.value) {	
+			if (this.searchBox.value !== this.currentQuery) {	
 				this.searchType = 'search';
 				this.list.classList.remove('show');
 				this.currentQuery = this.searchBox.value;
