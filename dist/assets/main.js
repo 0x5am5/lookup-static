@@ -62,6 +62,14 @@
 
 	var fourSquare = new _foursquare2.default();
 
+	var text = document.querySelectorAll('.js-logo-text');
+
+	[].forEach.call(text, function (text) {
+		setTimeout(function () {
+			text.classList.add('active');
+		}, 500);
+	});
+
 /***/ },
 /* 1 */
 /***/ function(module, exports) {
@@ -206,6 +214,7 @@
 				});
 
 				this.list.innerHTML = items;
+				this.list.classList.add('show');
 
 				if (this.searchType === 'geo') {
 					this.searchBox.setAttribute("placeholder", "Currently using your location...");
@@ -269,6 +278,7 @@
 				if (navigator.geolocation) {
 					this.searchBox.value = "";
 					this.searchBox.setAttribute("placeholder", "Getting your location...");
+					this.list.classList.remove('show');
 					this.searchType = 'geo';
 					navigator.geolocation.getCurrentPosition(this.showPosition.bind(this), this.showError.bind(this));
 				} else {
@@ -304,6 +314,7 @@
 				document.querySelector('#searchForm').addEventListener('submit', function (e) {
 					if (_this2.searchBox.value) {
 						_this2.searchType = 'search';
+						_this2.list.classList.remove('show');
 						_this2.currentQuery = _this2.searchBox.value;
 						_this2.callAPI.call(_this2, ENDPOINT_EXPLORE, exploreParams);
 					}

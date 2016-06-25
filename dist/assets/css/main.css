@@ -10203,6 +10203,12 @@ body {
   padding-top: 70px;
 }
 
+@font-face {
+  font-family: "lobster_1.3regular";
+  src: url("../fonts/lobster_1.3-webfont.woff2") format("woff2"), url("../fonts/lobster_1.3-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 .btn {
   font-size: 20px;
 }
@@ -10213,8 +10219,8 @@ body {
 
 .logo {
   position: relative;
-  text-align: center;
-  height: 50px;
+  margin: 0 auto;
+  height: 100px;
 }
 .logo__text {
   font-size: 2em;
@@ -10222,6 +10228,52 @@ body {
   position: absolute;
   top: 0;
   margin: 0;
+  transition: top ease .5s;
+  z-index: 5;
+  font-family: "lobster_1.3regular";
+  font-size: 3em;
+}
+.logo__text--red {
+  color: #ff2929;
+  z-index: 4;
+}
+.logo__text--red.active {
+  top: 10px;
+}
+.logo__text--yellow {
+  color: #fff729;
+  z-index: 3;
+}
+.logo__text--yellow.active {
+  top: 15px;
+}
+.logo__text--green {
+  color: #2eff29;
+  z-index: 2;
+}
+.logo__text--green.active {
+  top: 20px;
+}
+.logo__text--blue {
+  z-index: 1;
+  color: #2933ff;
+}
+.logo__text--blue.active {
+  top: 25px;
+}
+
+.results {
+  opacity: 0;
+  transition: opacity ease .5s;
+}
+.results a {
+  color: #000000;
+}
+.results a:hover {
+  text-decoration: none;
+}
+.results.show {
+  opacity: 1;
 }
 
 .search-form {

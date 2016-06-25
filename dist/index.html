@@ -37,7 +37,7 @@
       
       			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       				<ul class="nav navbar-nav">
-      					<li><a href="#">About</a></li>
+      					<li><a href="about.html">About</a></li>
       				</ul>
       			</div>
       		</div>
@@ -47,40 +47,42 @@
 
 <main>
 	<div class="container">
-		
+
 		<div class="logo">
 			<h1 class="sr-only">Lookup</h1>
-			<span class="logo__text logo__text--black">Lookup</span>
-			<span class="logo__text logo__text--red">Lookup</span>
-			<span class="logo__text logo__text--yellow">Lookup</span>
-			<span class="logo__text logo__text--green">Lookup</span>
-			<span class="logo__text logo__text--blue">Lookup</span>
+			<span class="logo__text">Lookup</span>
+			<span class="logo__text logo__text--red js-logo-text">Lookup</span>
+			<span class="logo__text logo__text--yellow js-logo-text">Lookup</span>
+			<span class="logo__text logo__text--green js-logo-text">Lookup</span>
+			<span class="logo__text logo__text--blue js-logo-text">Lookup</span>
 		</div>
 		<form action=# id=searchForm class=search-form>
 
-			<div class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li>
-						<label for="results">
-							No. of Results
-							<input type="number" id="results" class="form-control" value=5>
-						</label>
-					</li>
-				</ul>
-			</div>
-
 			<div class="row">
-				<div class="col-xs-8 col-sm-9">
-					<input type=search id=searchBox required class=form-control placeholder="Make a search...">
+				<div class="col-sm-9">
+					<div class="form-group">
+						<label for="search" class="sr-only">Search: </label>
+						<input type=search id=searchBox required class=form-control placeholder="Make a search...">
+					</div>
 				</div>
-				<div class="col-xs-4 col-sm-3">
+				<div class="col-sm-3">
 					<button type=submit class="btn-primary btn btn-lrg fa fa-search">
 						<span class="sr-only">Search</span>
 					</button>
 					<button type=button id=location class="btn btn-primary fa fa-dot-circle-o">
 						<span class="sr-only">Use Location</span>
 					</button>
+					<span class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li>
+								<label for="results">
+									No. of Results
+									<input type="number" id="results" class="form-control" value=5>
+								</label>
+							</li>
+						</ul>
+					</span>
 				</div>
 			</div>
 		</form>
