@@ -16,19 +16,86 @@ let params = {
 };
 
 export default class {
-	constructor() {
+	ajaxResponse(data) {
+		let search = data.response.geocode.displayString;
+		let responses = data.response.groups[0].items;
+		let items = '';
+
+		responses.forEach((item) => {
+			items += '<li>' + item.venue.name + '</li>';
+		});
+
+		this.list.innerHTML = items;
+
+	}
+
+	callAPI(e) {
+
 		$.getJSON(URL + ENDPOINT, {
 				client_id: CLIENT_ID,
 				client_secret: CLIENT_SECRET,
-				near: params.near,
+				near: this.currentQuery,
 				section: params.section,
 				v:20130815
-		}, (data) => {
-			let search = data.response.geocode.displayString;
-			let responses = data.response.groups.items;
-			console.log(responses)
-			//body.appendChild(String(data));
-		});
+		}, this.ajaxResponse.bind(this));
 
+		if (e) {
+			e.preventDefault;
+		}
+	}
+
+	addEvents() {
+		document.querySelector('#searchForm').addEventListener('submit', (e) => {
+			if (this.searchBox.value) {	
+				this.currentQuery = this.searchBox.value;
+				this.callAPI.call(this, e);
+			}
+		});
+	}
+
+	showError(error) {
+	    switch(error.code) {
+	        case error.PERMISSION_DENIED:
+	            this.statusBox.innerHTML = "User denied the request for Geolocation."
+	            break;
+	        case error.POSITION_UNAVAILABLE:
+	            this.statusBox.innerHTML = "Location information is unavailable."
+	            break;
+	        case error.TIMEOUT:
+	            this.statusBox.innerHTML = "The request to get user location timed out."
+	            break;
+	        case error.UNKNOWN_ERROR:
+	            this.statusBox.innerHTML = "An unknown error occurred."
+	            break;
+	    }
+	}
+
+	getLocation() {
+	    if (navigator.geolocation) {
+	        navigator.geolocation.getCurrentPosition(this.showPosition.bind(this), this.showError.bind(this));
+	    } else {
+	        this.statusBox.innerText = "Geolocation is not supported by this browser.";
+	    }
+	}
+	
+	showPosition(position) {
+
+		this.currentQuery = String(position.coords.latitude) + position.coords.longitude;
+
+    	this.statusBox.innerHTML = "Latitude: " + position.coords.latitude + 
+    									"<br>Longitude: " + position.coords.longitude; 
+
+
+    	this.callAPI.call(this);
+	}
+
+	constructor() {
+
+		this.list = document.querySelector('.results');
+		this.searchBox = document.querySelector('#searchBox');
+		this.statusBox = document.querySelector('.status-box');
+
+		this.addEvents();
+		this.getLocation();
 	}
 }

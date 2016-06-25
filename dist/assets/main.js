@@ -132,6 +132,8 @@
 		value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _jquery = __webpack_require__(3);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
@@ -156,22 +158,100 @@
 		section: 'topPicks'
 	};
 
-	var _class = function _class() {
-		_classCallCheck(this, _class);
+	var _class = function () {
+		_createClass(_class, [{
+			key: 'ajaxResponse',
+			value: function ajaxResponse(data) {
+				var search = data.response.geocode.displayString;
+				var responses = data.response.groups[0].items;
+				var items = '';
 
-		$.getJSON(URL + ENDPOINT, {
-			client_id: CLIENT_ID,
-			client_secret: CLIENT_SECRET,
-			near: params.near,
-			section: params.section,
-			v: 20130815
-		}, function (data) {
-			var search = data.response.geocode.displayString;
-			var responses = data.response.groups.items;
-			console.log(responses);
-			//body.appendChild(String(data));
-		});
-	};
+				responses.forEach(function (item) {
+					items += '<li>' + item.venue.name + '</li>';
+				});
+
+				this.list.innerHTML = items;
+			}
+		}, {
+			key: 'callAPI',
+			value: function callAPI(e) {
+
+				$.getJSON(URL + ENDPOINT, {
+					client_id: CLIENT_ID,
+					client_secret: CLIENT_SECRET,
+					near: this.currentQuery,
+					section: params.section,
+					v: 20130815
+				}, this.ajaxResponse.bind(this));
+
+				if (e) {
+					e.preventDefault;
+				}
+			}
+		}, {
+			key: 'addEvents',
+			value: function addEvents() {
+				var _this = this;
+
+				document.querySelector('#searchForm').addEventListener('submit', function (e) {
+					if (_this.searchBox.value) {
+						_this.currentQuery = _this.searchBox.value;
+						_this.callAPI.call(_this, e);
+					}
+				});
+			}
+		}, {
+			key: 'showError',
+			value: function showError(error) {
+				switch (error.code) {
+					case error.PERMISSION_DENIED:
+						this.statusBox.innerHTML = "User denied the request for Geolocation.";
+						break;
+					case error.POSITION_UNAVAILABLE:
+						this.statusBox.innerHTML = "Location information is unavailable.";
+						break;
+					case error.TIMEOUT:
+						this.statusBox.innerHTML = "The request to get user location timed out.";
+						break;
+					case error.UNKNOWN_ERROR:
+						this.statusBox.innerHTML = "An unknown error occurred.";
+						break;
+				}
+			}
+		}, {
+			key: 'getLocation',
+			value: function getLocation() {
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(this.showPosition.bind(this), this.showError.bind(this));
+				} else {
+					this.statusBox.innerText = "Geolocation is not supported by this browser.";
+				}
+			}
+		}, {
+			key: 'showPosition',
+			value: function showPosition(position) {
+
+				this.currentQuery = String(position.coords.latitude) + position.coords.longitude;
+
+				this.statusBox.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+
+				this.callAPI.call(this);
+			}
+		}]);
+
+		function _class() {
+			_classCallCheck(this, _class);
+
+			this.list = document.querySelector('.results');
+			this.searchBox = document.querySelector('#searchBox');
+			this.statusBox = document.querySelector('.status-box');
+
+			this.addEvents();
+			this.getLocation();
+		}
+
+		return _class;
+	}();
 
 	exports.default = _class;
 
