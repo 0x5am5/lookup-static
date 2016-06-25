@@ -12,7 +12,17 @@ let exploreParams = {
 	limit: 10
 };
 
+let photoSize = 'width100';
+
 export default class {
+	addPhoto(photos, result = '') {
+		
+		if (photos.count) {
+			result =  '<img src="' + photos.groups[0].prefix + photoSize + photos.groups[0].suffix + '"/>';
+		}
+
+		return result;
+	}
 	/**
      * Handles the error response from the getJSON method. Displays message.
      *
@@ -34,7 +44,10 @@ export default class {
 		let items = '';
 
 		responses.forEach((item) => {
-			items += '<li>' + item.venue.name + '</li>';
+			items += '<li>' + 
+				this.addPhoto(item.venue.photos) +
+				item.venue.name + 
+				'</li>';
 		});
 
 		this.list.innerHTML = items;
@@ -61,7 +74,7 @@ export default class {
 
 		$.getJSON(URL + endpoint, 
 			data, 
-			callback.bind(this))
+			this.ajaxResponseSuccess.bind(this))
 				.fail(this.ajaxResponseFail.bind(this));
 	}
 
@@ -74,7 +87,7 @@ export default class {
 		document.querySelector('#searchForm').addEventListener('submit', (e) => {
 			if (this.searchBox.value) {	
 				this.currentQuery = this.searchBox.value;
-				this.callAPI.call(this, ENDPOINT_EXPLORE, exploreParams, this.ajaxResponseSuccess);
+				this.callAPI.call(this, ENDPOINT_EXPLORE, exploreParams);
 			}
 			e.preventDefault;
 		});
@@ -127,7 +140,7 @@ export default class {
      */
 	showPosition(position) {
 		this.currentQuery = String(position.coords.latitude) + ',' + position.coords.longitude;
-    	this.callAPI.call(this, ENDPOINT_EXPLORE, exploreParams, this.ajaxResponseSuccess);
+    	this.callAPI.call(this, ENDPOINT_EXPLORE, exploreParams);
 	}
 
 	/**

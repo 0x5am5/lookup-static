@@ -155,15 +155,29 @@
 		limit: 10
 	};
 
+	var photoSize = 'width100';
+
 	var _class = function () {
 		_createClass(_class, [{
-			key: 'ajaxResponseFail',
+			key: 'addPhoto',
+			value: function addPhoto(photos) {
+				var result = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
 
+
+				if (photos.count) {
+					result = '<img src="' + photos.groups[0].prefix + photoSize + photos.groups[0].suffix + '"/>';
+				}
+
+				return result;
+			}
 			/**
 	      * Handles the error response from the getJSON method. Displays message.
 	      *
 	      * @method ajaxResponseFail
 	      */
+
+		}, {
+			key: 'ajaxResponseFail',
 			value: function ajaxResponseFail() {
 				this.statusBox.innerText = "There was an error retrieving recommended places.";
 			}
@@ -178,12 +192,14 @@
 		}, {
 			key: 'ajaxResponseSuccess',
 			value: function ajaxResponseSuccess(data) {
+				var _this = this;
+
 				var search = data.response.geocode.displayString;
 				var responses = data.response.groups[0].items;
 				var items = '';
 
 				responses.forEach(function (item) {
-					items += '<li>' + item.venue.name + '</li>';
+					items += '<li>' + _this.addPhoto(item.venue.photos) + item.venue.name + '</li>';
 				});
 
 				this.list.innerHTML = items;
@@ -210,7 +226,7 @@
 					client_id: CLIENT_ID,
 					client_secret: CLIENT_SECRET });
 
-				$.getJSON(URL + endpoint, data, callback.bind(this)).fail(this.ajaxResponseFail.bind(this));
+				$.getJSON(URL + endpoint, data, this.ajaxResponseSuccess.bind(this)).fail(this.ajaxResponseFail.bind(this));
 			}
 
 			/**
@@ -222,12 +238,12 @@
 		}, {
 			key: 'addEvents',
 			value: function addEvents() {
-				var _this = this;
+				var _this2 = this;
 
 				document.querySelector('#searchForm').addEventListener('submit', function (e) {
-					if (_this.searchBox.value) {
-						_this.currentQuery = _this.searchBox.value;
-						_this.callAPI.call(_this, ENDPOINT_EXPLORE, exploreParams, _this.ajaxResponseSuccess);
+					if (_this2.searchBox.value) {
+						_this2.currentQuery = _this2.searchBox.value;
+						_this2.callAPI.call(_this2, ENDPOINT_EXPLORE, exploreParams);
 					}
 					e.preventDefault;
 				});
@@ -289,7 +305,7 @@
 			key: 'showPosition',
 			value: function showPosition(position) {
 				this.currentQuery = String(position.coords.latitude) + ',' + position.coords.longitude;
-				this.callAPI.call(this, ENDPOINT_EXPLORE, exploreParams, this.ajaxResponseSuccess);
+				this.callAPI.call(this, ENDPOINT_EXPLORE, exploreParams);
 			}
 
 			/**
