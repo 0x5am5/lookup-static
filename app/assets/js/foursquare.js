@@ -56,6 +56,7 @@ export default class {
 
 		this.list.innerHTML = items;
 		this.list.classList.add('show');
+		this.loader.classList.remove('show');
 
 		if (this.searchType === 'geo') {
 			this.searchBox.setAttribute("placeholder", "Currently using your location...");
@@ -114,6 +115,7 @@ export default class {
 	    	this.searchBox.value = "";
 	        this.searchBox.setAttribute("placeholder", "Getting your location...");
 	        this.list.classList.remove('show');
+	        this.loader.classList.add('show');
 			this.searchType = 'geo';
 	        navigator.geolocation.getCurrentPosition(this.showPosition.bind(this), this.showError.bind(this));
 	    } else {
@@ -142,6 +144,7 @@ export default class {
 			if (this.searchBox.value !== this.currentQuery) {	
 				this.searchType = 'search';
 				this.list.classList.remove('show');
+				this.loader.classList.add('show');
 				this.currentQuery = this.searchBox.value;
 				this.callAPI.call(this, ENDPOINT_EXPLORE, exploreParams);
 			}
@@ -168,6 +171,7 @@ export default class {
 		this.searchBox = document.querySelector('#searchBox');
 		this.statusBox = document.querySelector('.status-box');
 		this.limit = document.querySelector('#results');
+		this.loader = document.querySelector('.status-box');
 
 		this.addEvents();
 		this.getLocation();

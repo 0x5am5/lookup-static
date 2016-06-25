@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>FourSquare - jupiterandthegiraffe</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="jupiterandthegiraffe" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.0.1</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/FourSquare.html">FourSquare</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1>FourSquare Class</h1>
+<div class="box meta">
+
+
+        <div class="foundat">
+            Defined in: <a href="../files/app_assets_js_foursquare.js.html#l161"><code>app&#x2F;assets&#x2F;js&#x2F;foursquare.js:161</code></a>
+        </div>
+
+
+</div>
+
+
+<div class="box intro">
+    <p>This class calls handles users Geolocation or search input and retrieves top recommended places
+in their area.</p>
+
+</div>
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+<div id="method_FourSquare" class="method item">
+    <h3 class="name"><code>FourSquare</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/app_assets_js_foursquare.js.html#l161"><code>app&#x2F;assets&#x2F;js&#x2F;foursquare.js:161</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+    </div>
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                            <li class="index-item method">
+                                <a href="#method_addEvents">addEvents</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_ajaxResponseFail">ajaxResponseFail</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_ajaxResponseSuccess">ajaxResponseSuccess</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_callAPI">callAPI</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getLocation">getLocation</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_hashowPositionndler">hashowPositionndler</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_showError">showError</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+
+
+        </div>
+
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+<div id="method_addEvents" class="method item">
+    <h3 class="name"><code>addEvents</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/app_assets_js_foursquare.js.html#l137"><code>app&#x2F;assets&#x2F;js&#x2F;foursquare.js:137</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Bind the events to handle user input</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_ajaxResponseFail" class="method item">
+    <h3 class="name"><code>ajaxResponseFail</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/app_assets_js_foursquare.js.html#l25"><code>app&#x2F;assets&#x2F;js&#x2F;foursquare.js:25</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Handles the error response from the getJSON method. Displays message.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_ajaxResponseSuccess" class="method item">
+    <h3 class="name"><code>ajaxResponseSuccess</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>Data</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/app_assets_js_foursquare.js.html#l34"><code>app&#x2F;assets&#x2F;js&#x2F;foursquare.js:34</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Handles the response from the getJSON method, loops through responses and adds to list on the page</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">Data</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>JSON data recieved from the get JSON.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_callAPI" class="method item">
+    <h3 class="name"><code>callAPI</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/app_assets_js_foursquare.js.html#l66"><code>app&#x2F;assets&#x2F;js&#x2F;foursquare.js:66</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>This method calls the Foursquare API (or any set) based on the current query and params defined above</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_getLocation" class="method item">
+    <h3 class="name"><code>getLocation</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/app_assets_js_foursquare.js.html#l108"><code>app&#x2F;assets&#x2F;js&#x2F;foursquare.js:108</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>If the users browser supports geolocation, it asks for permission</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_hashowPositionndler" class="method item">
+    <h3 class="name"><code>hashowPositionndler</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>Raw</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/app_assets_js_foursquare.js.html#l126"><code>app&#x2F;assets&#x2F;js&#x2F;foursquare.js:126</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Sets the users geolocation as the current set query of the app</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">Raw</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>Geolocation data</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_showError" class="method item">
+    <h3 class="name"><code>showError</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>Error</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/app_assets_js_foursquare.js.html#l85"><code>app&#x2F;assets&#x2F;js&#x2F;foursquare.js:85</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>If there was an error retrieving the users geolocation, show and error</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">Error</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>information</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+            </div>
+
+
+
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

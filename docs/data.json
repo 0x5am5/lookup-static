@@ -1,0 +1,115 @@
+{
+    "project": {
+        "name": "jupiterandthegiraffe",
+        "description": "JS associated with Juptier and the Giraffe",
+        "version": "0.0.1"
+    },
+    "files": {
+        "app/assets/js/foursquare.js": {
+            "name": "app/assets/js/foursquare.js",
+            "modules": {},
+            "classes": {
+                "FourSquare": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "FourSquare": {
+            "name": "FourSquare",
+            "shortname": "FourSquare",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "app/assets/js/foursquare.js",
+            "line": 161,
+            "description": "This class calls handles users Geolocation or search input and retrieves top recommended places\nin their area.",
+            "is_constructor": 1
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "app/assets/js/foursquare.js",
+            "line": 25,
+            "description": "Handles the error response from the getJSON method. Displays message.",
+            "itemtype": "method",
+            "name": "ajaxResponseFail",
+            "class": "FourSquare"
+        },
+        {
+            "file": "app/assets/js/foursquare.js",
+            "line": 34,
+            "description": "Handles the response from the getJSON method, loops through responses and adds to list on the page",
+            "itemtype": "method",
+            "name": "ajaxResponseSuccess",
+            "params": [
+                {
+                    "name": "Data",
+                    "description": "JSON data recieved from the get JSON.",
+                    "type": "Object"
+                }
+            ],
+            "class": "FourSquare"
+        },
+        {
+            "file": "app/assets/js/foursquare.js",
+            "line": 66,
+            "description": "This method calls the Foursquare API (or any set) based on the current query and params defined above",
+            "itemtype": "method",
+            "name": "callAPI",
+            "class": "FourSquare"
+        },
+        {
+            "file": "app/assets/js/foursquare.js",
+            "line": 85,
+            "description": "If there was an error retrieving the users geolocation, show and error",
+            "itemtype": "method",
+            "name": "showError",
+            "params": [
+                {
+                    "name": "Error",
+                    "description": "information",
+                    "type": "Object"
+                }
+            ],
+            "class": "FourSquare"
+        },
+        {
+            "file": "app/assets/js/foursquare.js",
+            "line": 108,
+            "description": "If the users browser supports geolocation, it asks for permission",
+            "itemtype": "method",
+            "name": "getLocation",
+            "class": "FourSquare"
+        },
+        {
+            "file": "app/assets/js/foursquare.js",
+            "line": 126,
+            "description": "Sets the users geolocation as the current set query of the app",
+            "itemtype": "method",
+            "name": "hashowPositionndler",
+            "params": [
+                {
+                    "name": "Raw",
+                    "description": "Geolocation data",
+                    "type": "Object"
+                }
+            ],
+            "class": "FourSquare"
+        },
+        {
+            "file": "app/assets/js/foursquare.js",
+            "line": 137,
+            "description": "Bind the events to handle user input",
+            "itemtype": "method",
+            "name": "addEvents",
+            "class": "FourSquare"
+        }
+    ],
+    "warnings": []
+}

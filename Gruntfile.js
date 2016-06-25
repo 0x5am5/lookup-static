@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 		sass: {
 			dev: {
 				options: {
-        	style: 'expanded'
+        			style: 'expanded'
 				},
 				files: [{
 					expand: true,
@@ -36,7 +36,8 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				options: {
-          			style: 'expanded'
+          			style: 'compressed',
+          			sourcemap: false
 				},
 				files: [{
 					expand: true,
@@ -49,15 +50,15 @@ module.exports = function(grunt) {
 		},
 
 		connect: {
-      server: {
-        options: {
-          port: 9001,
-          base: 'dist',
-          livereload: true,
-          open: true
-        }
-      }
-    },
+	      server: {
+	        options: {
+	          port: 9001,
+	          base: 'dist',
+	          livereload: true,
+	          open: true
+	        }
+	      }
+	    },
 
 		assemble: {
 			options: {
@@ -83,7 +84,7 @@ module.exports = function(grunt) {
 			options: {
 				map: false,
 				processors: [
-					// require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes 
+					require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes 
 				]
 			},
 			dist: {
@@ -133,6 +134,24 @@ module.exports = function(grunt) {
 					outdir: './docs'
 				}
 			}
+		},
+
+		uglify: {
+		 	dist: {
+		 		files: {
+		 			'./dist/assets/main.js': './dist/assets/main.js'
+		 		}
+		 	}
+		},
+
+		karma: {
+		  	unit: {
+		  		configFile: 'karma.conf.js',
+		    	options: {
+		      		files: ['./app/assets/js/**/*.js'],
+		      		singleRun: true
+		    	}
+		  	}
 		}
 
 
@@ -145,7 +164,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-yuidoc');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	// grunt.loadNpmTasks('grunt-karma');
 
 	// Default task(s).
 	grunt.registerTask('default', function() {
@@ -157,6 +177,6 @@ module.exports = function(grunt) {
 
 	});
 	// Build task
-	grunt.registerTask('build', ['sass:dist', 'postcss', 'assemble', 'webpack']);
+	grunt.registerTask('build', ['sass:dist', 'postcss', 'assemble', 'yuidoc', 'webpack', 'uglify']);
 
 };

@@ -1,0 +1,8 @@
+.status-box {
+	text-align: center;
+	display: none;
+
+	&.show {
+		display: block;
+	} 
+}
