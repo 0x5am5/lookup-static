@@ -18,5 +18,5 @@ I used task-runner Grunt to assemble and build the code.
 
 ## Documentation
 
-All Javascript is documented and can be seen at samgregory.media/Sites/lookup/docs
+All Javascript is documented and can be seen at samgregory.media/Sites/lookup/docs.
 
