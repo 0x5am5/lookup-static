@@ -1,0 +1,56 @@
+$sm: 5px;
+$md: 15px;
+$lg: 20px;
+
+$positions: top left right bottom;
+
+@mixin the-margin($direction: "") {
+
+	@if $direction != ""  { $direction: '-' + $direction; }
+	
+	.margin {
+		&#{$direction}--sm {
+			margin#{$direction}: $sm !important;
+		}
+
+		&#{$direction}--md {
+			margin#{$direction}: $md !important;
+		}
+
+		&#{$direction}--lg {
+			margin#{$direction}: $lg !important;
+		}
+	}	
+}
+
+@mixin the-padding($direction: "") {
+
+	@if $direction != ""  { $direction: '-' + $direction; }
+	
+	.padding {
+		&#{$direction}--sm {
+			padding#{$direction}: $sm !important;
+		}
+
+		&#{$direction}--md {
+			padding#{$direction}: $md !important;
+		}
+
+		&#{$direction}--lg {
+			padding#{$direction}: $lg !important;
+		}
+	}	
+}
+
+@include the-margin;
+
+@each $position in $positions {
+	@include the-margin('#{$position}');
+}
+
+@include the-padding;
+
+@each $position in $positions {
+	@include the-padding('#{$position}');
+}
+

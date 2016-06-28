@@ -1,27 +1,22 @@
-# Static Handlebars Template
+# Lookup
 
-This repository serves as a clonable repo to help kick off a basic handlebars project. It promotes several ideologies worth noting. Your workable files exist in the app/ folder and will be exported into the Distribution (dist/) folder. The project will livereload after every change.
+## Todo
+- caching
+- ember
+- dialog
+- Testing
 
-## Grunt
+## Who are we
 
-The project runs of the Grunt task-runner and packages include...
+Lookup was designed and developed by Sam Gregory so that people could spend more time looking at their phones than actualy discovering the world around them for themselves.
 
-- Assemble
-- Grunt Contrib Sass
-- PostCSS
-- Webpack
-- Grunt Contrib Watch
+## The code
 
-The template generates its own static webserver using **grunt-contrib-connect**.
+Lookup was built using static-site templating language Handlebars, SASS, and ES2015. Interacting with the Foursquare API using AJAX to retrieve the most popular places in a given location, plus the users current location (on local server as https is required). With the help of Bootstrap-sass so that i was able to quickly put together a mobile-first website and adjust styles where necessary. 
 
-## ES2015
+I used task-runner Grunt to assemble and build the code.
 
-Weback contains the **babel-loader** plugin using the **ES2015** preset promoting pure JavaScript written in ES2015.
+## Documentation
 
-### JavaScript Documentation
+All Javascript is documented and can be seen at lookup.samgregory.media/docs.
 
-Documenting your JavaScript is encouraged and will generate your docs using **yuidoc** in a 'Docs' folder at the root of this project.
-
-## ITCSS
-
-The project encourages the **ITCSS** architecture created by CSSWizardry. Folders are in place so you can begin using this immediately using **SASS** to bring it altogether.# lookup-static

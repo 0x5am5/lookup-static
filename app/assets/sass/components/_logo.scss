@@ -1,0 +1,53 @@
+.logo {
+	position: relative;
+	margin: 0 auto;
+	height: 100px;
+
+	&__text {
+		font-size: 2em;
+		color: $colorBlack;
+		position: absolute;
+		top: 0;
+		margin: 0;
+		transition: top ease .5s;
+		z-index: 5;
+		font-family: $logoFont;
+		font-size: 3em;
+
+		&--red {
+			color: $colorLogoRed;
+			z-index: 4;
+
+			&.active {
+				top: 10px;
+			}
+		}
+
+		&--yellow {
+			color: $colorLogoYellow;
+			z-index: 3;
+
+			&.active {
+				top: 15px;
+			}
+		}
+
+		&--green {
+			color: $colorLogoGreen;
+			z-index: 2;
+
+			&.active {
+				top: 20px;
+			}
+		}
+
+		&--blue {
+			z-index: 1;
+			color: $colorLogoBlue;
+
+			&.active {
+				top: 25px;
+			}
+		}
+	}
+}

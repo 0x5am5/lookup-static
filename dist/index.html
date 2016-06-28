@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en_GB">
+  <head>
+    <meta charset="utf-8">
+    <title>Lookup is the app that means you&#x27;ll never look up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="canonical" href=""/>
+
+    <link href="assets/css/main.css" rel="stylesheet" type="text/css" />
+
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:type" content="website" />
+
+  </head>
+  <body>
+
+
+    <div class="wrapper">
+      
+      <header>
+      	<nav class="navbar navbar-inverse navbar-fixed-top">
+      		<div class="container-fluid">
+      
+      			<div class="navbar-header">
+      				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      					<span class="sr-only">Toggle navigation</span>
+      					<span class="icon-bar"></span>
+      					<span class="icon-bar"></span>
+      					<span class="icon-bar"></span>
+      				</button>
+      				<a class="navbar-brand" href="index.html">LookUp</a>
+      			</div>
+      
+      			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      				<ul class="nav navbar-nav">
+      					<li><a href="about.html">About</a></li>
+      				</ul>
+      			</div>
+      		</div>
+      	</nav>	
+      </header>
+      
+
+<main>
+	<div class="container">
+
+		<div class="logo">
+			<h1 class="sr-only">Lookup</h1>
+			<span class="logo__text">Lookup</span>
+			<span class="logo__text logo__text--red js-logo-text">Lookup</span>
+			<span class="logo__text logo__text--yellow js-logo-text">Lookup</span>
+			<span class="logo__text logo__text--green js-logo-text">Lookup</span>
+			<span class="logo__text logo__text--blue js-logo-text">Lookup</span>
+		</div>
+		<form action=# id=searchForm class=search-form>
+
+			<div class="row">
+				<div class="col-sm-9">
+					<div class="form-group">
+						<label for="search" class="sr-only">Search: </label>
+						<input type=search id=searchBox required class=form-control placeholder="Make a search...">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<button type=submit class="btn-primary btn btn-lrg fa fa-search">
+						<span class="sr-only">Search</span>
+					</button>
+					<button type=button id=location class="btn btn-primary fa fa-dot-circle-o">
+						<span class="sr-only">Use Location</span>
+					</button>
+					<span class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li>
+								<label for="results">
+									No. of Results
+									<input type="number" id="results" class="form-control" value=5>
+								</label>
+							</li>
+						</ul>
+					</span>
+				</div>
+			</div>
+		</form>
+
+		<div class=status-box>
+			<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+			<span class="sr-only">Loading...</span>
+		</div>
+
+		<ul class="results list-unstyled"></ul>
+	</div>
+</main>
+
+      <footer>
+      	<div class="footer navbar-inverse">
+      		<div class="container">
+      			<h2>Sitemap</h2>
+      			
+      			<nav>
+      				<ul class="list-unstyled">
+      					<li>
+      						<a href="index.html">The App</a>
+      					</li>
+      					<li>
+      						<a href="about.html">About</a>
+      					</li>
+      				</ul>
+      			</nav>
+      			
+      			Copywrite 2016 Sam Gregory
+      		</div>
+      	</div>
+      </footer>
+      <div class="splat">
+        Splat!
+
+        <img src="assets/images/me.png" alt="">
+      </div>
+
+  </body>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="assets/main.js"></script>
+</html>
