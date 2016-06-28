@@ -142,18 +142,7 @@ module.exports = function(grunt) {
 		 			'./dist/assets/main.js': './dist/assets/main.js'
 		 		}
 		 	}
-		},
-
-		karma: {
-		  	unit: {
-		  		configFile: 'karma.conf.js',
-		    	options: {
-		      		files: ['./app/assets/js/**/*.js'],
-		      		singleRun: true
-		    	}
-		  	}
 		}
-
 
 	});
 
@@ -165,7 +154,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-yuidoc');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
-	// grunt.loadNpmTasks('grunt-karma');
 
 	// Default task(s).
 	grunt.registerTask('default', function() {
