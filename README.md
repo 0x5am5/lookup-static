@@ -1,4 +1,4 @@
-# Lookup
+![Lookup](logo.png)
 
 ## Todo
 - caching
