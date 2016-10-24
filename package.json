@@ -4,17 +4,22 @@
   "description": "A basic Handlebars project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server -d --progress --colors --inline --hot --https --open --content-base dist",
+    "build:dev": "webpack -d --display-modules --progress",
+    "build:dist": "webpack -p --display-modules --progress"
   },
   "author": "Sam Gregory",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^6.3.6",
-    "babel-core": "^6.10.4",
-    "babel-loader": "^6.2.4",
-    "babel-preset-es2015": "^6.9.0",
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.16.0",
     "bootstrap-sass": "^3.3.6",
     "chai": "^3.5.0",
+    "extract-loader": "0.0.2",
+    "file-loader": "^0.9.0",
     "grunt": "^1.0.1",
     "grunt-assemble": "^0.4.0",
     "grunt-contrib-connect": "^1.0.2",
@@ -26,11 +31,17 @@
     "grunt-karma": "^2.0.0",
     "grunt-postcss": "^0.8.0",
     "grunt-webpack": "^1.0.11",
+    "html-loader": "^0.4.4",
     "jquery": "^3.0.0",
     "karma": "^1.0.0",
     "karma-chrome-launcher": "^1.0.1",
     "karma-jasmine": "^1.0.2",
     "karma-requirejs": "^1.0.0",
-    "webpack": "^1.13.1"
+    "ngtemplate-loader": "^1.3.1",
+    "webpack": "^1.13.2"
+  },
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.1"
   }
 }
